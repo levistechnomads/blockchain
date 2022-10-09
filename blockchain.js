@@ -37,5 +37,5 @@ blockchain.addBlock({data:"Block1"})
 console.log(blockchain);
 
 const result = Blockchain.isValidchain(blockchain.chain);
-console.log(result); //hrllo
+console.log(result); 
 module.exports = Blockchain; 
