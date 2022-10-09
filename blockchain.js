@@ -31,12 +31,12 @@ class Blockchain{
             return false;
         }
         for(let i=1; i<chain.length; i++){
-            const {timestamp,prevHash,hash,data} = chain[i];
+            const {timestamp,prevHash,hash,data, nonce, difficulty} = chain[i];
             const realLastHash = chain[i - 1].hash;
 
             if(prevHash !== realLastHash) return false;
             
-            const validateHash = cryptoHash(timestamp, prevHash, data)
+            const validateHash = cryptoHash(timestamp, prevHash, data, nonce, difficulty)
             if(hash !== validateHash) return false;
         }
         return true;
@@ -45,7 +45,9 @@ class Blockchain{
 }
 
 const blockchain = new Blockchain();
-blockchain.addBlock({data:"Block1"})
+blockchain.addBlock({data:"Block1"});
+blockchain.addBlock({data:"Block2"});
+
 console.log(blockchain);
 
 const result = Blockchain.isValidchain(blockchain.chain);
